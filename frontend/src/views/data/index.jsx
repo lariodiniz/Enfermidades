@@ -24,13 +24,13 @@ class Data extends Component {
     }
 
     _set_continuos_get(){
-        setInterval(this._get_dados, 1000);
+        setInterval(this._get_dados, 500);
         
     }
 
     componentWillMount(){
         this._get_dados()
-        this._set_continuos_get()
+        //this._set_continuos_get()
     }
       
 

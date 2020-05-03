@@ -42,7 +42,7 @@ class Index extends Component {
 
     componentWillMount(){
         this._get_dados()
-        this._set_continuos_get()
+        //this._set_continuos_get()
     }
 
     _format_date(date){

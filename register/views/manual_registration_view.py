@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 from core.models import (DiseasesModel, UrlFontsModel, OriginsModel, StatesModel,
-    CountysModel, NeighborhoodsModel, AdressesModel, PersonsModel, SicksModel
+    CountysModel, NeighborhoodsModel, AdressesModel, PersonsModel, SicksModel, GeneralDataModel
     )
 
 from register.utils import RegisterSick
@@ -35,6 +35,8 @@ class ManualRegistrationView(LoginRequiredMixin, TemplateView ):
             messages.add_message(request, messages.WARNING, 'O campo Total de Infectados precisa ter um numero')
             return render(request, self.template_name)
 
+        
+        
         if novosCasos == -100:
             CountysModel.objects.all().delete()
             NeighborhoodsModel.objects.all().delete()
@@ -42,6 +44,7 @@ class ManualRegistrationView(LoginRequiredMixin, TemplateView ):
             PersonsModel.objects.all().delete()
             SicksModel.objects.all().delete()
             OriginsModel.objects.all().delete()
+            GeneralDataModel.objects.all().delete()
             messages.add_message(request, messages.SUCCESS, 'Todos Os registros apagados')
             return render(request, self.template_name)
 
@@ -50,7 +53,7 @@ class ManualRegistrationView(LoginRequiredMixin, TemplateView ):
         except ValueError:
             messages.add_message(request, messages.WARNING, 'O campo Total Mortos precisa ter um numero')
             return render(request, self.template_name)
-
+        
         if novosCasos < 0:
             messages.add_message(request, messages.WARNING, 'O campo Total de Infectados precisa ser positivo')
             return render(request, self.template_name)
@@ -66,10 +69,28 @@ class ManualRegistrationView(LoginRequiredMixin, TemplateView ):
             messages.add_message(request, messages.WARNING, 'O campo Data precisa ser definido')
             return render(request, self.template_name)
 
-        registrar = RegisterSick('SARS-CoV-2', 'Ministério da Saude')
+        
 
-        infectados, obitos = registrar.register_total('IN', data, novosCasos, novosObitos)
-        messages.add_message(request, messages.SUCCESS, f'Dados cadastrados no dia {data:%d/%m/%Y-}. {infectados} novos infectados e {obitos} novos mortos.')
+        try:
+            last = GeneralDataModel.objects.latest('day')
+            last_infectds = last.infecteds
+            last_deads = last.deads
+        except GeneralDataModel.DoesNotExist:
+            last_infectds = 0
+            last_deads = 0
+
+        
+
+        registro = GeneralDataModel()
+        registro.day = data
+        registro.dead_news = novosObitos -last_deads
+        registro.infected_news = novosCasos -last_infectds
+        registro.disease = DiseasesModel.objects.get(name = 'SARS-CoV-2')
+        registro.save()
+
+        #registrar = RegisterSick('SARS-CoV-2', 'Ministério da Saude')
+
+        messages.add_message(request, messages.SUCCESS, f'Dados cadastrados no dia {data:%d/%m/%Y-}. {registro.infected_news} novos infectados e {registro.dead_news} novos mortos.')
 
         return render(request, self.template_name)
 

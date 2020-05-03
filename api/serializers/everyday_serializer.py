@@ -1,18 +1,20 @@
 #coding: utf-8
 __author__ = "Lário dos Santos Diniz"
 
-
 from rest_framework import serializers
+from core.models import GeneralDataModel
 
-class EverydaySerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    day = serializers.DateField()
-    infected = serializers.IntegerField()
-    infected_porcents = serializers.DecimalField(decimal_places=2, max_digits=5)
-    infected_news = serializers.IntegerField()
-    infected_news_porcents = serializers.DecimalField(decimal_places=2, max_digits=5)
-    dead =  serializers.IntegerField()
-    dead_porcents = serializers.DecimalField(decimal_places=2, max_digits=5)
-    dead_news =  serializers.IntegerField()
-    dead_news_porcents =  serializers.DecimalField(decimal_places=2, max_digits=5)
-    lethality =  serializers.DecimalField(decimal_places=2, max_digits=5)
+class EverydaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GeneralDataModel
+        fields = ['pk', 'day','infecteds', 'infected_porcents',
+        'infected_news','infected_news_porcents','deads',
+        'dead_porcents','dead_news','dead_news_porcents', 'lethality'
+        ]
+
+'''
+class TresDeTEspecializacoesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Especializacoes
+        fields = ['id','name', 'description']
+'''

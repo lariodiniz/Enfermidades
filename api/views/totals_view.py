@@ -1,22 +1,26 @@
 #coding: utf-8
 __author__ = "Lário dos Santos Diniz"
 
+from django.db.models import Sum
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.serializers import TotalsSerializer
-from core.models import SicksModel
+from core.models import GeneralDataModel
 
 class Totals():
 
     def __init__(self):
+        
+
         try:
-            self.last_update = SicksModel.objects.latest('infection_identification_date').infection_identification_date
-            self.infected = SicksModel.objects.all().count()
-            self.dead = SicksModel.objects.filter(person__dead=True,).count() 
-            self.lethality = (self.dead * 100) / self.infected
-        except SicksModel.DoesNotExist:
+            last = GeneralDataModel.objects.latest('day')
+            self.last_update = last.day
+            self.infected = last.infecteds
+            self.dead = last.deads
+            self.lethality = last.lethality
+        except GeneralDataModel.DoesNotExist:
             self.last_update = None
             self.infected = None
             self.dead = None

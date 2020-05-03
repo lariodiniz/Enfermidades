@@ -8,3 +8,4 @@ from .neighborhoods_model import NeighborhoodsModel
 from .adresses_model import AdressesModel
 from .persons_model import PersonsModel
 from .sicks_model import SicksModel
+from .general_date_model import GeneralDataModel

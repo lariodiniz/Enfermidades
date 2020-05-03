@@ -24,7 +24,7 @@ class Data extends Component {
     }
 
     _set_continuos_get(){
-        setInterval(this._get_dados, 30000);
+        setInterval(this._get_dados, 1000);
         
     }
 
@@ -52,13 +52,13 @@ class Data extends Component {
         return this.state.dados_especificos.map(dados =>{
             
             return (
-                <tr key={dados.id} className="centraliza_texto">
+                <tr key={dados.pk} className="centraliza_texto">
                     <td >{this._format_date(dados.day)}</td>
-                    <td>{dados.infected}</td>
+                    <td>{dados.infecteds}</td>
                     <td>{dados.infected_porcents}</td>
                     <td>{dados.infected_news}</td>
                     <td>{dados.infected_news_porcents}</td>
-                    <td>{dados.dead}</td>
+                    <td>{dados.deads}</td>
                     <td>{dados.dead_porcents}</td>
                     <td>{dados.dead_news}</td>
                     <td>{dados.dead_news_porcents}</td>

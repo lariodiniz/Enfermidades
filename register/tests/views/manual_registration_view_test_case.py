@@ -7,6 +7,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from model_mommy import mommy
+from core.models import GeneralDataModel, DiseasesModel
 
 
 class ManualRegistrationViewTest(TestCase):
@@ -17,6 +18,7 @@ class ManualRegistrationViewTest(TestCase):
         self.user = mommy.prepare(settings.AUTH_USER_MODEL)
         self.user.set_password('123')
         self.user.save() 
+        mommy.make(DiseasesModel, name = 'SARS-CoV-2')
 
     def test_status_code(self):
         response = self.client.get(self.url)
@@ -29,6 +31,23 @@ class ManualRegistrationViewTest(TestCase):
         self.client.login(username=self.user.username, password='123')
         response = self.client.get(self.url)
         self.assertTemplateUsed(response, 'register/manual_registration.html')
+
+    def test_template_signing_up(self):
+
+        data = {
+            'inputData':'2020-05-02',
+            'inputInfectados':10,
+            'inputMortos': 2
+        }
+
+        self.client.login(username=self.user.username, password='123')
+        response = self.client.post(self.url, data)
+        self.assertEquals(response.status_code, 200)
+
+        general = GeneralDataModel.objects.all()[0]
+        self.assertEquals(general.dead_news, data['inputMortos'])
+        self.assertEquals(general.infected_news, data['inputInfectados'])
+
 
 
     '''

@@ -7,3 +7,4 @@ from .neighborhoods_model_test_case import NeighborhoodsModelTestCase
 from .adresses_model_test_case import AdressesModelTestCase
 from .persons_model_test_case import PersonsModelTestCase
 from .sicks_model_test_case import SicksModelTestCase
+from .general_data_model_test_case import GeneralDataModelTestCase

@@ -30,6 +30,7 @@ class Index extends Component {
         }).catch(e=>console.log(e))
 
         axios.get(`${constantes.API_URL}/api/diario`).then((resp) =>{
+            console.log(resp.data)
             this.setState( {...this.state, dados_especificos:resp.data, mostraGraficos:true})
         }).catch(e=>console.log(e))
 
@@ -93,9 +94,9 @@ class Index extends Component {
 
         let data =[
             ['Estatos', 'Quantidade'],
-            ['Saldavel', (211462943 - this.state.dados_gerais.infected)],
-            ['Infectados', this.state.dados_gerais.infected],
-            ['Mortos', this.state.dados_gerais.dead],
+            ['Saldavel', (211462943 - this.state.dados_gerais.infecteds)],
+            ['Infectados', this.state.dados_gerais.infecteds],
+            ['Mortos', this.state.dados_gerais.deads],
           ]
 
         return (
@@ -154,7 +155,7 @@ class Index extends Component {
           let data = [['Dia', 'Infectados', 'Novos Infectados']]
 
           this.state.dados_especificos.forEach((dados) => {
-                let d = [this._format_date(dados.day),dados.infected, dados.infected_news]
+                let d = [this._format_date(dados.day),dados.infecteds, dados.infected_news]
                 data.push(d)
             })
 
@@ -166,7 +167,7 @@ class Index extends Component {
           let data = [['Dia', 'Mortos']]
 
           this.state.dados_especificos.forEach((dados) => {
-                let d = [this._format_date(dados.day),dados.dead]
+                let d = [this._format_date(dados.day),dados.deads]
                 data.push(d)
             })
 

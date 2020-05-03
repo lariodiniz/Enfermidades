@@ -14,7 +14,7 @@
   <form class="form card p-2" action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="text-center mb-4">      
-        <h1 class="h3 mb-3 font-weight-normal">Cadastrar Informação Diaria</h1>
+        <h1 id="titulo" class="h3 mb-3 font-weight-normal">Cadastrar Informação Diaria</h1>
         <p>Cadastra informação diaria do <a href="https://covid.saude.gov.br/" target="_blank" >ministério da saude</a></p>
       </div>
         <div class="row">
@@ -22,7 +22,7 @@
             <div class="form-group row">
               <label for="inputData" class="col-4 col-form-label">Data</label>
               <div class="col-8">
-                <input type="date" class="form-control" id="inputData" name="inputData">
+                <input type="date" class="form-control" id="inputData" name="inputData" autofocus>
               </div>
             </div>
           </div>

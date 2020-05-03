@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}    
+  
+     <!-- Required meta tags -->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Enfermidades">
+    <meta name="author" content="Lário Diniz">
+
+    {% block meta %}
+    {% endblock meta %}
+
+	  <title>{% block title %}Enfermidades{% endblock %}</title>    
+    
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />  
+
+    {% block css %}
+    {% endblock css %}   
+
+</head>
+<body class="bg-light"  >
+<br>
+    <div class="container">
+      {% include 'layout/messages.html' %}
+
+      {% block container %}
+
+      {% endblock %}
+      
+    </div>
+    
+    <script src="{% static 'assets/jquery/jquery.min.js' %}"></script>    
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>    
+
+    {% block scripts %}
+  
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends "layout/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - Carregar PLanilhas Ministério da Saude 
+{% endblock title %}
+
+   
+{% block container %}
+<br>
+<br>
+<form class="form card p-2" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="text-center mb-4">      
+      <h1 class="h3 mb-3 font-weight-normal">Importar Planilha</h1>
+      <p>Importar planilha do <a href="https://covid.saude.gov.br/" target="_blank" >ministério da saude</a></p>
+    </div>
+    <div class="form-group">
+        <label for="planilhas">Planilhas</label>
+        <input type="file" class="form-control-file" id="planilhas" name="planilha">  
+      </div>            
+      <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+        Enviar
+    </button>
+    
+  </form>
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,47 @@
+#financialMessages {
+    position: fixed;
+    
+    width: 40%;
+    right: 10px;
+    bottom: 20px;    
+    padding: 5px;
+    background: -moz-linear-gradient( top, #f8f9fa 0%, #dee2e6);
+    background: -webkit-gradient( linear, left top, left bottom, from(#f8f9fa), to(#dee2e6));
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 10px;
+    border: 0px solid #dee2e6;
+    -moz-box-shadow: 3px 4px 3px rgba(000,000,000,1), inset 0px 0px 1px rgba(255,255,255,0.5);
+    -webkit-box-shadow: 3px 4px 3px rgba(000,000,000,1), inset 0px 0px 1px rgba(255,255,255,0.5);
+    box-shadow: 3px 4px 3px rgba(000,000,000,1), inset 0px 0px 1px rgba(255,255,255,0.5);
+    text-shadow: 0px -1px 0px rgba(000,000,000,0.7), 0px 1px 0px rgba(255,255,255,0.3);
+}
+
+#financialMessages .az-mail-item {
+    width: 98%;   
+
+}
+
+@media only screen and (max-width: 600px) {
+    #financialMessages {
+        width: 95%;        
+    }
+    #financialMessages .az-mail-item {
+        width: 100%;   
+        position: relative;
+    }
+    #financialMessages .az-mail-checkbox {
+        display: block; 
+        width: 10%; 
+    } 
+    #financialMessages .az-mail-body {
+        width: 60%;   
+    }  
+    #financialMessages .az-mail-date {
+        width: 20%;   
+    }          
+  }
+
+.az-header-center {
+    display: block;
+}

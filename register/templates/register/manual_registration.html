@@ -1,0 +1,66 @@
+{% extends "layout/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - Cadastro Manual do Ministério da Saude 
+{% endblock title %}
+
+   
+{% block container %}
+<div class="container">
+<div class="row justify-content-md-center">
+  <div class="col-12">
+  <form class="form card p-2" action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="text-center mb-4">      
+        <h1 class="h3 mb-3 font-weight-normal">Cadastrar Informação Diaria</h1>
+        <p>Cadastra informação diaria do <a href="https://covid.saude.gov.br/" target="_blank" >ministério da saude</a></p>
+      </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputData" class="col-4 col-form-label">Data</label>
+              <div class="col-8">
+                <input type="date" class="form-control" id="inputData" name="inputData">
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputInfectados" class="col-6 col-form-label">Total infectados</label>
+              <div class="col-6">
+                <input type="number" class="form-control" id="inputInfectados" name="inputInfectados">
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group row">
+              <label for="inputMortos" class="col-6 col-form-label">Total Mortos</label>
+              <div class="col-6">
+                <input type="number" class="form-control" id="inputMortos" name="inputMortos">
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row justify-content-md-center">
+        <div class="col-6">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+              Enviar
+            </button>
+        </div>
+      </div>
+    </form>
+</div>
+</div>  
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,2 @@
+from .ministry_of_health_view_test_case import MinistryOfHealthViewTest
+from .manual_registration_view_test_case import ManualRegistrationViewTest

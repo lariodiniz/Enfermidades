@@ -1,0 +1,2 @@
+from .ministry_of_health_view import ministry_of_health_view
+from .manual_registration_view import manual_registration_view

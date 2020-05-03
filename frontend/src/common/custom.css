@@ -1,0 +1,17 @@
+:root {
+    --cor-01: #f4f2f1;
+    --cor-02: blue;
+}
+
+body{
+    background-color: var(--cor-01);
+}
+
+.test_background{
+    background-color: var(--cor-02);
+    z-index: 1000;
+}
+
+.centraliza_texto{
+    text-align: center;
+}

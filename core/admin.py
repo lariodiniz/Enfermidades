@@ -5,7 +5,8 @@ __author__ = "Lário dos Santos Diniz"
 from django.contrib import admin
 
 from .models import (DiseasesModel, UrlFontsModel, OriginsModel, StatesModel,
-    CountysModel, NeighborhoodsModel, AdressesModel, PersonsModel, SicksModel
+    CountysModel, NeighborhoodsModel, AdressesModel, PersonsModel, SicksModel,
+    GeneralDataModel
     )
 
 class SicksAdmin(admin.ModelAdmin):
@@ -29,6 +30,16 @@ class PersonsAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ['name', 'age_range', 'dead']
 
+class GeneralDataAdmin(admin.ModelAdmin):
+
+
+    list_display = ['day', 'infected_news', 'dead_news']
+    date_hierarchy = 'day'
+
+    search_fields = ['day']
+    list_filter = ['day']
+
+
 admin.site.register(DiseasesModel)
 admin.site.register(UrlFontsModel)
 admin.site.register(OriginsModel)
@@ -38,3 +49,4 @@ admin.site.register(NeighborhoodsModel)
 admin.site.register(AdressesModel)
 admin.site.register(PersonsModel, PersonsAdmin)
 admin.site.register(SicksModel, SicksAdmin)
+admin.site.register(GeneralDataModel)

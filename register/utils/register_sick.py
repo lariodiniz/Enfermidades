@@ -37,7 +37,7 @@ class RegisterSick:
         novosObitos = obitos - existe
 
         if novosInfectados > 0:
-            self.register(estado, data, novosInfectados, novosObitos)
+            self.register(estado, data, casos, novosObitos)
             print(f'Cadastrados {novosInfectados} novos infectados')
             return novosInfectados, novosObitos
 
@@ -72,8 +72,7 @@ class RegisterSick:
                 bairro.save()
 
             obitos = int(novosObitos)
-            print('fora do for')
-            print(obitos)
+
             for x in range(int(novosCasos) - novo):
                 endereco = AdressesModel()
                 endereco.streets = 'INDEFINIDO'

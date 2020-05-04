@@ -9,9 +9,9 @@ import IF from '../../utils/if'
 import './base.css';
 
 export default props => {
-    
+
     let isMobile = window.innerWidth <= 575;
-    
+
     return(
     <React.Fragment>
 
@@ -21,7 +21,6 @@ export default props => {
                 <IF test={!isMobile}>
                      <Sidebar/>
                 </IF>
-                
                 <main role="main" className="col-12 col-sm-10 main">
                     <IF test={isMobile}>
                         <SidebarMobile />

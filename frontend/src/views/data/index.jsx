@@ -48,8 +48,8 @@ class Data extends Component {
     }
 
     _render_table_line(){
-
-        return this.state.dados_especificos.map(dados =>{
+        let dados = this.state.dados_especificos.reverse()
+        return dados.map(dados =>{
             
             return (
                 <tr key={dados.pk} className="centraliza_texto">

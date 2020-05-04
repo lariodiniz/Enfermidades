@@ -15,7 +15,7 @@ class EverydayView(APIView):
     """
 
     def get(self, request, format=None):
-        objects = GeneralDataModel.objects.all()
+        objects = GeneralDataModel.objects.all().order_by('day')
         serializer = EverydaySerializer(objects, many=True)
         return Response(serializer.data)
 

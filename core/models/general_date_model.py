@@ -13,8 +13,8 @@ class GeneralDataModel(models.Model):
     """
 
     day = models.DateField(verbose_name=_('Day'))
-    infected_news = models.PositiveIntegerField(verbose_name=_('Infected News'))
-    dead_news = models.PositiveIntegerField(verbose_name=_('Dead News'))
+    infected_news = models.IntegerField(verbose_name=_('Infected News'))
+    dead_news = models.IntegerField(verbose_name=_('Dead News'))
 
     disease = models.ForeignKey(DiseasesModel, verbose_name=_('Disease'), on_delete=models.CASCADE)
 

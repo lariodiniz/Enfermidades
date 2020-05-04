@@ -1,7 +1,7 @@
 #coding: utf-8
 __author__ = "Lário dos Santos Diniz"
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.http import Http404
 from django.shortcuts import render
@@ -71,24 +71,27 @@ class ManualRegistrationView(LoginRequiredMixin, TemplateView ):
 
         
 
+        disease = DiseasesModel.objects.get(name = 'SARS-CoV-2')
+
         try:
-            last = GeneralDataModel.objects.latest('day')
+            last = GeneralDataModel.objects.filter(
+                disease=disease, day__lte=(data-timedelta(1))).order_by('-day')[0]
             last_infectds = last.infecteds
             last_deads = last.deads
         except GeneralDataModel.DoesNotExist:
             last_infectds = 0
             last_deads = 0
 
-        
+        try:
+            registro = GeneralDataModel.objects.get(disease = disease, day = data)
+        except GeneralDataModel.DoesNotExist:
+            registro = GeneralDataModel()
+            registro.day = data
+            registro.disease = disease
 
-        registro = GeneralDataModel()
-        registro.day = data
-        registro.dead_news = novosObitos -last_deads
+        registro.dead_news = novosObitos - last_deads
         registro.infected_news = novosCasos -last_infectds
-        registro.disease = DiseasesModel.objects.get(name = 'SARS-CoV-2')
         registro.save()
-
-        #registrar = RegisterSick('SARS-CoV-2', 'Ministério da Saude')
 
         messages.add_message(request, messages.SUCCESS, f'Dados cadastrados no dia {data:%d/%m/%Y-}. {registro.infected_news} novos infectados e {registro.dead_news} novos mortos.')
 

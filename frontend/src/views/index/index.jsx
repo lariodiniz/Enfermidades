@@ -163,11 +163,12 @@ class Index extends Component {
     }
 
     _render_grafico_dia_mortos(){
-        let series = { 0: { color: '#e2431e' }}
-          let data = [['Dia', 'Mortos']]
+        let series = { 0: { color: '#e2431e' },
+                       1: { color: '#43459d' }}
+          let data = [['Dia', 'Mortos', 'Novos Mortos']]
 
           this.state.dados_especificos.forEach((dados) => {
-                let d = [this._format_date(dados.day),dados.deads]
+                let d = [this._format_date(dados.day),dados.deads, dados.dead_news]
                 data.push(d)
             })
 
@@ -187,6 +188,33 @@ class Index extends Component {
         return this._render_grafico_linha(series, data,'Dia', 'Letalidade')
     }
 
+    _render_grafico_dia_novos_infectados(){
+        let series = {
+            0: { color: '#e2431e' }
+          }
+
+          let data = [['Dia','Novos Infectados']]
+
+          this.state.dados_especificos.forEach((dados) => {
+                let d = [this._format_date(dados.day), dados.infected_news]
+                data.push(d)
+            })
+
+        return this._render_grafico_linha(series, data,'Dia', 'Novos Infectados')
+    }
+
+    _render_grafico_dia_novos_mortos(){
+        let series = { 0: { color: '#e2431e' }}
+          let data = [['Dia',  'Novos Mortos']]
+
+          this.state.dados_especificos.forEach((dados) => {
+                let d = [this._format_date(dados.day),dados.dead_news]
+                data.push(d)
+            })
+
+        return this._render_grafico_linha(series, data,'Dia', 'Novos Mortos')
+    }
+
     _render_graficos(){
         if (!this.state.mostraGraficos) {
             return <Loading />
@@ -204,6 +232,12 @@ class Index extends Component {
                     <hr />
                     <h3>Letalidade</h3>
                     {this._render_grafico_dia_letalidae()}
+                    <hr />                    
+                    <h3>Novos Infectados / Dia</h3>
+                    {this._render_grafico_dia_novos_infectados()}
+                    <hr />                    
+                    <h3>Novos Mortos / Dia</h3>
+                    {this._render_grafico_dia_novos_mortos()}                                        
                 </div>
             </div>
         )

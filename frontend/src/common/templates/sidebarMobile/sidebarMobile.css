@@ -1,0 +1,26 @@
+
+.sidebarMobile-nav-item-a {
+
+	
+	cursor:pointer;
+	color:#666565;
+	text-decoration:none;
+    text-shadow:0px -1px 0px #aeb0af;
+    
+}
+
+.sidebarMobile-nav-item-a:hover {
+	background:linear-gradient(to bottom, #bdbdbd 5%, #ffffff 100%);
+	background-color:#bdbdbd;
+}
+
+.sidebarMobile-nav-item-a:active {
+	position:relative;
+    top:1px;
+
+}
+
+.sidebarMobile-nav{
+    margin-bottom: 1em;
+}
+     

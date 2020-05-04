@@ -30,7 +30,6 @@ class Index extends Component {
         }).catch(e=>console.log(e))
 
         axios.get(`${constantes.API_URL}/api/diario`).then((resp) =>{
-            console.log(resp.data)
             this.setState( {...this.state, dados_especificos:resp.data, mostraGraficos:true})
         }).catch(e=>console.log(e))
 

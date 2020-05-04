@@ -18,6 +18,9 @@ class Sidebar extends Component {
                         <li className="nav-item centraliza_texto">
                             <Link className="nav-link sidebar-nav-item-a" to="/dados">Dados Diarios</Link>
                         </li>
+                        <li className="nav-item centraliza_texto">
+                            <Link className="nav-link sidebar-nav-item-a" to="/fontes">Fonte</Link>
+                        </li>                        
                     </ul>
                     <h6 className="centraliza_texto">Desenvolvedor</h6>
                     <ul className="nav flex-column mb-2">

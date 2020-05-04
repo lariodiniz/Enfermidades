@@ -19,8 +19,6 @@ class Data extends Component {
         axios.get(`${constantes.API_URL}/api/diario`).then((resp) =>{
             this.setState( {...this.state, dados_especificos:resp.data, mostraGraficos:true})
         }).catch(e=>console.log(e))
-        console.log('dados atualizados')
-        
     }
 
     _set_continuos_get(){
